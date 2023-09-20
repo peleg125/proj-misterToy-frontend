@@ -30,12 +30,10 @@ export function ToyDetails() {
   function onRemoveToy() {
     removeToy(params.toyId)
       .then(() => {
-        showSuccessMsg('Toy removed')
         navigate('/toy')
       })
       .catch((err) => {
         console.log('Cannot remove toy', err)
-        showErrorMsg('Cannot remove toy')
       })
   }
 
