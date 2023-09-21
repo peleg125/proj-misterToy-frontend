@@ -9,6 +9,7 @@ import { store } from './store/store'
 import { ToyIndex } from './pages/ToyIndex'
 import { ToyDetails } from './pages/ToyDetails'
 import { ToyEdit } from './pages/ToyEdit'
+import { Dashboard } from './pages/Dashboard'
 
 export function App() {
   return (
@@ -19,11 +20,12 @@ export function App() {
           <main>
             <Routes>
               <Route element={<HomePage />} path='/' />
+              <Route element={<AboutUs />} path='/about' />
               <Route element={<ToyDetails />} path='/toy/details/:toyId' />
               <Route element={<ToyEdit />} path='/toy/edit/:toyId' />
               <Route element={<ToyEdit />} path='/toy/edit' />
               <Route element={<ToyIndex />} path='/toy' />
-              <Route element={<AboutUs />} path='/about' />
+              <Route element={<Dashboard />} path='/dashboard' />
             </Routes>
           </main>
         </section>

@@ -1,10 +1,10 @@
 // import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 import { utilService } from './util.service.js'
-const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
 const STORAGE_KEY = 'toyDB'
 const BASE_URL = 'toy/'
+const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
 export const toyService = {
   query,
@@ -14,11 +14,11 @@ export const toyService = {
   getEmptyToy,
   getDefaultFilter,
   getDefaultSort,
+  getLabels,
 }
 
 function query(filterBy = {}, sortBy) {
   const data = { ...filterBy, ...sortBy }
-  console.log('from query', data)
   return httpService.get(BASE_URL, data)
 }
 
@@ -62,4 +62,8 @@ const randomLabels = (labels, min, max) => {
   const randomLength = Math.floor(Math.random() * (max - min + 1) + min)
   const shuffled = labels.sort(() => 0.5 - Math.random())
   return shuffled.slice(0, randomLength)
+}
+
+function getLabels() {
+  return labels
 }
