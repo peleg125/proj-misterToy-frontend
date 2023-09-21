@@ -1,8 +1,10 @@
-import { storageService } from './async-storage.service.js'
+// import { storageService } from './async-storage.service.js'
+import { httpService } from './http.service.js'
 import { utilService } from './util.service.js'
 const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
 const STORAGE_KEY = 'toyDB'
+const BASE_URL = 'toy/'
 
 export const toyService = {
   query,
@@ -15,41 +17,45 @@ export const toyService = {
 }
 
 function query(filterBy = {}, sortBy) {
-  return storageService.query(STORAGE_KEY).then((toys) => {
-    let filteredToys = toys
+  return httpService.get(BASE_URL, filterBy, sortBy)
 
-    if (filterBy.name) {
-      const regExp = new RegExp(filterBy.name, 'i')
-      filteredToys = filteredToys.filter((toy) => regExp.test(toy.name))
-    }
+  // return storageService.query(STORAGE_KEY).then((toys) => {
+  //   let filteredToys = toys
 
-    if (filterBy.inStock !== undefined) {
-      filteredToys = filteredToys.filter((toy) => toy.inStock === filterBy.inStock)
-    }
+  //   if (filterBy.name) {
+  //     const regExp = new RegExp(filterBy.name, 'i')
+  //     filteredToys = filteredToys.filter((toy) => regExp.test(toy.name))
+  //   }
 
-    if (filterBy.labels && filterBy.labels.length > 0) {
-      filteredToys = filteredToys.filter((toy) => filterBy.labels.some((label) => toy.labels.includes(label)))
-    }
+  //   if (filterBy.inStock !== undefined) {
+  //     filteredToys = filteredToys.filter((toy) => toy.inStock === filterBy.inStock)
+  //   }
 
-    filteredToys = utilService.getSortedToys(filteredToys, sortBy)
+  //   if (filterBy.labels && filterBy.labels.length > 0) {
+  //     filteredToys = filteredToys.filter((toy) => filterBy.labels.some((label) => toy.labels.includes(label)))
+  //   }
 
-    return filteredToys
-  })
+  //   filteredToys = utilService.getSortedToys(filteredToys, sortBy)
+
+  //   return filteredToys
+  // })
 }
 
 function getById(toyId) {
-  return storageService.get(STORAGE_KEY, toyId)
+  return httpService.get(BASE_URL, toyId)
+  // return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
-  return storageService.remove(STORAGE_KEY, toyId)
+  return httpService.remove(BASE_URL, toyId)
+  // return storageService.remove(STORAGE_KEY, toyId)
 }
 
 function save(toy) {
   if (toy._id) {
-    return storageService.put(STORAGE_KEY, toy)
+    return httpService.put(BASE_URL, toy)
   } else {
-    return storageService.post(STORAGE_KEY, toy)
+    return httpService.post(BASE_URL, toy)
   }
 }
 function getDefaultSort() {

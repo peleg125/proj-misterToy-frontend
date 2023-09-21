@@ -23,7 +23,7 @@ export function ToySort({ sortBy, setSortBy }) {
       }))
     }
   }
-  console.log(sortBy)
+
   return (
     <form className='toy-sort'>
       <select name='type' value={sortByToEdit.type} onChange={handleChange}>

@@ -25,9 +25,6 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
 
   const { name, inStock, labels } = filterByToEdit
 
-  console.log('name', name)
-  console.log('inStock', inStock)
-  console.log('labels', labels)
   return (
     <section className='toy-filter'>
       <form>
