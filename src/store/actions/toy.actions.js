@@ -1,5 +1,11 @@
 import { toyService } from '../../services/toy.service.js'
-import { ADD_TOY, SET_FILTER_BY, REMOVE_TOY, SET_TOYS, UPDATE_TOY } from '../reducers/toy.reducer.js'
+import {
+  ADD_TOY,
+  SET_FILTER_BY,
+  REMOVE_TOY,
+  SET_TOYS,
+  UPDATE_TOY,
+} from '../reducers/toy.reducer.js'
 import { store } from '../store.js'
 
 export function loadToy(sortBy) {
@@ -8,7 +14,6 @@ export function loadToy(sortBy) {
   return toyService
     .query(filterBy, sortBy)
     .then((toys) => {
-      console.log('Fetched toys:', toys) // Debug line
       store.dispatch({ type: SET_TOYS, toys })
     })
     .catch((err) => {

@@ -1,9 +1,3 @@
-// const { useState, useEffect } = React
-// const { useParams, useNavigate } = ReactRouterDOM
-// import { toyService } from '../services/toy.service.js'
-// import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
-// import { removeToy } from '../store/actions/toy.actions.js'
-
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { removeToy } from '../store/actions/toy.actions'

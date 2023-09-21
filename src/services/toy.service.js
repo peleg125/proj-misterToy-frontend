@@ -17,7 +17,9 @@ export const toyService = {
 }
 
 function query(filterBy = {}, sortBy) {
-  return httpService.get(BASE_URL, filterBy, sortBy)
+  const data = { ...filterBy, ...sortBy }
+  console.log('from query', data)
+  return httpService.get(BASE_URL, data)
 
   // return storageService.query(STORAGE_KEY).then((toys) => {
   //   let filteredToys = toys
@@ -77,76 +79,8 @@ function getEmptyToy() {
   }
 }
 
-function _createToys() {
-  let toys = utilService.loadFromStorage(STORAGE_KEY)
-
-  if (!toys || !toys.length) {
-    const toys = [
-      {
-        _id: 't101',
-        name: 'Talking Doll',
-        price: 123,
-        labels: ['Doll', 'Battery Powered', 'Baby'],
-        createdAt: 1631031801011,
-        inStock: true,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Racing Car',
-        price: 50,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1635131801011,
-        inStock: true,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Art Kit',
-        price: 70,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1638231809017,
-        inStock: false,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Jigsaw Puzzle',
-        price: 20,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1632331804311,
-        inStock: true,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Baby Stroller',
-        price: 110,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1632934821021,
-        inStock: false,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Remote Helicopter',
-        price: 99,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1634231809876,
-        inStock: true,
-      },
-      {
-        _id: utilService.makeId(),
-        name: 'Outdoor Slide',
-        price: 150,
-        labels: randomLabels(labels, 1, 3),
-        createdAt: 1631531807523,
-        inStock: true,
-      },
-    ]
-
-    utilService.saveToStorage(STORAGE_KEY, toys)
-  }
-}
 const randomLabels = (labels, min, max) => {
   const randomLength = Math.floor(Math.random() * (max - min + 1) + min)
   const shuffled = labels.sort(() => 0.5 - Math.random())
   return shuffled.slice(0, randomLength)
 }
-
-_createToys()
