@@ -20,36 +20,15 @@ function query(filterBy = {}, sortBy) {
   const data = { ...filterBy, ...sortBy }
   console.log('from query', data)
   return httpService.get(BASE_URL, data)
-
-  // return storageService.query(STORAGE_KEY).then((toys) => {
-  //   let filteredToys = toys
-
-  //   if (filterBy.name) {
-  //     const regExp = new RegExp(filterBy.name, 'i')
-  //     filteredToys = filteredToys.filter((toy) => regExp.test(toy.name))
-  //   }
-
-  //   if (filterBy.inStock !== undefined) {
-  //     filteredToys = filteredToys.filter((toy) => toy.inStock === filterBy.inStock)
-  //   }
-
-  //   if (filterBy.labels && filterBy.labels.length > 0) {
-  //     filteredToys = filteredToys.filter((toy) => filterBy.labels.some((label) => toy.labels.includes(label)))
-  //   }
-
-  //   filteredToys = utilService.getSortedToys(filteredToys, sortBy)
-
-  //   return filteredToys
-  // })
 }
 
 function getById(toyId) {
-  return httpService.get(BASE_URL, toyId)
+  return httpService.get(BASE_URL + toyId)
   // return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
-  return httpService.remove(BASE_URL, toyId)
+  return httpService.delete(BASE_URL + toyId)
   // return storageService.remove(STORAGE_KEY, toyId)
 }
 
