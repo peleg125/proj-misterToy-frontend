@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { utilService } from '../services/util.service.js'
+import { SelectFilter } from './SelectFilter.jsx'
+import { toyService } from '../services/toy.service.js'
 
 export function ToyFilter({ filterBy, onSetFilterBy }) {
   const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
 
   const debouncedOnSetFilterBy = useRef(utilService.debounce(onSetFilterBy))
+
+  const labelsToChoose = toyService.getLabels()
 
   useEffect(() => {
     debouncedOnSetFilterBy.current(filterByToEdit)
@@ -16,14 +20,19 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 
-  function handleMultiSelectChange(e) {
+  function handleMultiSelectChange(newValue) {
     setFilterByToEdit((prevFilter) => ({
       ...prevFilter,
-      labels: Array.from(e.target.selectedOptions, (option) => option.value),
+      labels: newValue,
     }))
   }
+  // function handleMultiSelectChange(e) {
+  //   console.log(e)
+  // }
 
   const { name, inStock, labels } = filterByToEdit
+
+  console.log('🚀 ~ file: ToyFilter.jsx:31 ~ ToyFilter ~ labelsToChoose:', labelsToChoose)
 
   return (
     <section className='toy-filter'>
@@ -34,7 +43,8 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
             <input type='checkbox' name='inStock' checked={inStock} onChange={handleChange} />
             In Stock
           </label>
-          <select multiple={true} value={labels} onChange={handleMultiSelectChange}>
+          <SelectFilter labels={labelsToChoose} selectedLabels={labels} onLabelChange={handleMultiSelectChange} />
+          {/* <select multiple={true} value={labels} onChange={handleMultiSelectChange}>
             <option value='On wheels'>On wheels</option>
             <option value='Box game'>Box game</option>
             <option value='Baby'>Baby</option>
@@ -42,7 +52,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
             <option value='Puzzle'>Puzzle</option>
             <option value='Outdoor'>Outdoor</option>
             <option value='Battery Powered'>Battery Powered</option>
-          </select>
+          </select> */}
         </div>
       </form>
     </section>
