@@ -26,13 +26,8 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
       labels: newValue,
     }))
   }
-  // function handleMultiSelectChange(e) {
-  //   console.log(e)
-  // }
 
   const { name, inStock, labels } = filterByToEdit
-
-  console.log('🚀 ~ file: ToyFilter.jsx:31 ~ ToyFilter ~ labelsToChoose:', labelsToChoose)
 
   return (
     <section className='toy-filter'>
