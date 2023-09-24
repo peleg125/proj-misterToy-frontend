@@ -1,7 +1,5 @@
 .toy-index {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
 }
 
 .add-toy-container {
@@ -16,4 +14,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
+}
+.toy-filter-sort {
+  place-self: center;
 }

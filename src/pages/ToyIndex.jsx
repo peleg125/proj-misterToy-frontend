@@ -26,14 +26,16 @@ export function ToyIndex() {
 
   return (
     <section className='toy-index'>
-      <div className='add-toy-container'>
-        <Link className='add-toy' to='/toy/edit'>
-          Add Toy
-        </Link>
-      </div>
-      {!toys.length && <div className='loading'>Loading...</div>}
-      <ToyFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
-      <ToySort sortBy={sortBy} setSortBy={setSortBy} />
+      <section className='toy-filter-sort'>
+        <div className='add-toy-container'>
+          <Link className='add-toy' to='/toy/edit'>
+            Add Toy
+          </Link>
+        </div>
+        {!toys.length && <div className='loading'>Loading...</div>}
+        <ToyFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
+        <ToySort sortBy={sortBy} setSortBy={setSortBy} />
+      </section>
       {toys && <ToyList toys={toys} />}
     </section>
   )
