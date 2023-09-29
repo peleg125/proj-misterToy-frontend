@@ -1,5 +1,6 @@
 .toy-index {
   display: grid;
+  background-color: $clr2;
 }
 
 .add-toy-container {
@@ -9,12 +10,17 @@
 
 .add-toy {
   text-decoration: none;
-  color: white;
-  background-color: var(--clr2);
+  color: $clr6;
+  background-color: $clr1;
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
 }
 .toy-filter-sort {
   place-self: center;
+  background-color: #f2cd5d;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

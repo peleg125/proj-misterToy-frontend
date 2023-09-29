@@ -1,8 +1,45 @@
 .home-page {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: $clr5;
 
-  img {
-    height: 500px;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid $clr3;
+    border-radius: em(10px);
+    padding: em(40px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    background-color: $clrwhite;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .inner-container {
+      text-align: center;
+
+      div {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: $clr1;
+        margin-bottom: em(20px);
+      }
+
+      img {
+        max-width: 300px;
+        border-radius: 10px;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: translateY(-10px);
+        }
+      }
+    }
   }
 }

@@ -1,22 +1,19 @@
 .toy-preview {
-  background-color: #fff;
+  background-color: $clr3;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: em(5px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 10px;
+  padding: em(20px);
+  margin: em(10px);
   transition: all 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   cursor: pointer;
-}
 
-.toy-preview .toy-name {
-  margin-bottom: 10px;
-}
-.toy-preview:hover {
-  transform: scale(1.05);
-  background-color: #ffebd6;
+  &:hover {
+    transform: scale(1.05);
+    background-color: complement($clr3);
+  }
 }

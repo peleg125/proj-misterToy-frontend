@@ -25,17 +25,19 @@ export function ToySort({ sortBy, setSortBy }) {
   }
 
   return (
-    <form className='toy-sort'>
-      <select name='type' value={sortByToEdit.type} onChange={handleChange}>
-        <option value='default'>Sort by</option>
-        <option value='name'>Name</option>
-        <option value='price'>Price</option>
-        <option value='createdAt'>Created At</option>
-      </select>
-      <label>
-        <input type='checkbox' name='desc' checked={sortByToEdit.desc > 0} onChange={handleChange} />
-        Descending
-      </label>
-    </form>
+    <div className='toy-sort'>
+      <form className='toy-sort-form'>
+        <select name='type' value={sortByToEdit.type} onChange={handleChange}>
+          <option value='default'>Sort by</option>
+          <option value='name'>Name</option>
+          <option value='price'>Price</option>
+          <option value='createdAt'>Created At</option>
+        </select>
+        <label>
+          <input type='checkbox' name='desc' checked={sortByToEdit.desc > 0} onChange={handleChange} />
+          Descending
+        </label>
+      </form>
+    </div>
   )
 }
