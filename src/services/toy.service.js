@@ -1,4 +1,3 @@
-// import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 import { utilService } from './util.service.js'
 
@@ -24,12 +23,10 @@ function query(filterBy = {}, sortBy) {
 
 function getById(toyId) {
   return httpService.get(BASE_URL + toyId)
-  // return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
   return httpService.delete(BASE_URL + toyId)
-  // return storageService.remove(STORAGE_KEY, toyId)
 }
 
 function save(toy) {
@@ -56,12 +53,6 @@ function getEmptyToy() {
     createdAt: Date.now(),
     inStock: true,
   }
-}
-
-const randomLabels = (labels, min, max) => {
-  const randomLength = Math.floor(Math.random() * (max - min + 1) + min)
-  const shuffled = labels.sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, randomLength)
 }
 
 function getLabels() {

@@ -1,6 +1,5 @@
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import './assets/style/main.css'
 
 import { AboutUs } from './pages/AboutUs'
 import { AppHeader } from './cmps/AppHeader'

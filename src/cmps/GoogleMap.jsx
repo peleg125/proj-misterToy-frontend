@@ -30,9 +30,15 @@ export function GoogleMap() {
   const [api, setApi] = useState(null)
 
   useEffect(() => {
-    getGoogleApiKey().then((key) => {
-      setApi(key)
-    })
+    const getGApiKey = async () => {
+      try {
+        const key = await getGoogleApiKey()
+        setApi(key)
+      } catch (err) {
+        console.error(`Could not fetch API key -- ${err}`)
+      }
+    }
+    getGApiKey()
   }, [])
 
   const storesMarkers = [
@@ -60,10 +66,9 @@ export function GoogleMap() {
   function handleClick({ lat, lng }) {
     setCoordinates({ lat, lng })
   }
-  function getGoogleApiKey() {
-    return httpService.get('getconfig').then((config) => {
-      return Promise.resolve(config.apiKey)
-    })
+  async function getGoogleApiKey() {
+    const config = await httpService.get('getconfig')
+    return await Promise.resolve(config.apiKey)
   }
 
   if (!api) return <div>loading..</div>

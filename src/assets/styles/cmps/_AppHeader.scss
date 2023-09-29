@@ -1,0 +1,22 @@
+$clr1: var(--clr1);
+$clr1bg: var(--clr1bg);
+
+.app-header {
+  background-color: $clr1;
+  color: $clr1bg;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center;
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: $clr1bg;
+      padding: 8px 0;
+    }
+  }
+}

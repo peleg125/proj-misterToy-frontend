@@ -9,19 +9,21 @@ export function ToyEdit() {
   const params = useParams()
 
   useEffect(() => {
-    if (params.toyId) loadToy()
-  }, [])
+    const fetchToy = async () => {
+      try {
+        const toy = await toyService.getById(params.toyId)
+        if (!toy) {
+          navigate('/toy')
+        } else {
+          setToyToEdit(toy)
+        }
+      } catch (err) {
+        console.log('Had issues loading toy', err)
+      }
+    }
 
-  function loadToy() {
-    toyService
-      .getById(params.toyId)
-      .then(setToyToEdit)
-      .catch((err) => {
-        console.log('Had issued in toy edit:', err)
-        navigate('/toy')
-        showErrorMsg('Toy not found!')
-      })
-  }
+    fetchToy()
+  }, [params.toyId])
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -38,14 +40,14 @@ export function ToyEdit() {
       labels: selectedOptions,
     })
   }
-  function onSaveToy(ev) {
+  async function onSaveToy(ev) {
     ev.preventDefault()
-    toyService
-      .save(toyToEdit)
-      .then(() => navigate('/toy'))
-      .catch((err) => {
-        showErrorMsg('Cannot save toy', err)
-      })
+    try {
+      await toyService.save(toyToEdit)
+      navigate('/toy')
+    } catch (err) {
+      showErrorMsg('Cannot save toy', err)
+    }
   }
 
   const { name, price, labels, createdAt, inStock } = toyToEdit

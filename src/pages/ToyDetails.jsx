@@ -10,25 +10,29 @@ export function ToyDetails() {
   const [currToy, setCurrToy] = useState(null)
 
   useEffect(() => {
-    toyService
-      .getById(params.toyId)
-      .then((toy) => {
-        if (!toy) return navigate('/toy')
-        setCurrToy(toy)
-      })
-      .catch((err) => {
+    const fetchToy = async () => {
+      try {
+        const toy = await toyService.getById(params.toyId)
+        if (!toy) {
+          navigate('/toy')
+        } else {
+          setCurrToy(toy)
+        }
+      } catch (err) {
         console.log('Had issues loading toy', err)
-      })
-  }, [])
+      }
+    }
 
-  function onRemoveToy() {
-    removeToy(params.toyId)
-      .then(() => {
-        navigate('/toy')
-      })
-      .catch((err) => {
-        console.log('Cannot remove toy', err)
-      })
+    fetchToy()
+  }, [params.toyId])
+
+  async function onRemoveToy() {
+    try {
+      await removeToy(params.toyId)
+      navigate('/toy')
+    } catch (err) {
+      console.error('Could not remove toy ', err, params.toyId)
+    }
   }
 
   if (!currToy) return <h4>loading</h4>

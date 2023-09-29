@@ -1,0 +1,23 @@
+// SETUP
+@import 'setup/vars.scss';
+@import 'setup/functions';
+@import 'setup/mixins';
+
+@import 'setup/typography';
+@import 'base/layout.scss';
+@import 'base/base.scss';
+@import 'base/forms.scss';
+@import 'base/helpers.scss';
+
+// CMPS
+@import 'cmps/AboutUs.scss';
+@import 'cmps/AppHeader.scss';
+@import 'cmps/HomePage.scss';
+@import 'cmps/ToyEdit.scss';
+@import 'cmps/ToyForm.scss';
+@import 'cmps/ToyIndex.scss';
+@import 'cmps/ToyList.scss';
+@import 'cmps/ToyPreview.scss';
+@import 'cmps/UserMsg.scss';
+
+// BASE - If you have additional base styles to add, they go here.

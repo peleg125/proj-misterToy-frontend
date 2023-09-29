@@ -1,0 +1,62 @@
+/* Media queries Breakpoint mixins */
+
+@mixin for-mobile-layout {
+  @media (max-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-narrow-layout {
+  @media (min-width: $break-narrow) {
+    @content;
+  }
+}
+
+@mixin for-normal-layout {
+  @media (min-width: $break-normal) {
+    @content;
+  }
+}
+
+@mixin for-wide-layout {
+  @media (min-width: $break-wide) {
+    @content;
+  }
+}
+
+@mixin layoutGTC($max) {
+  grid-template-columns:
+    minmax($layoutPadding, 1fr)
+    minmax(auto, $max)
+    minmax($layoutPadding, 1fr);
+}
+
+// Mixin for buttons
+@mixin button-styles($bg-color: $clr1bg, $text-color: white, $border-radius: 4px) {
+  padding: 10px 20px;
+  border: none;
+  border-radius: $border-radius;
+  background-color: $bg-color;
+  color: $text-color;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    // background-color: darken($clr1bg, 10%);
+  }
+}
+
+// Mixin for inputs
+@mixin input-styles($border-color: $clr1bg, $border-radius: 4px) {
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  width: 100%;
+  resize: none;
+  transition: border-color 0.3s;
+
+  &:focus {
+    // border-color: darken($border-color, 10%);
+    outline: none;
+  }
+}
