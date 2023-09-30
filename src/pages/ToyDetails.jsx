@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { removeToy } from '../store/actions/toy.actions'
 import { toyService } from '../services/toy.service'
+import { userService } from '../services/user.service'
 
 export function ToyDetails() {
   const params = useParams()
   const navigate = useNavigate()
 
   const [currToy, setCurrToy] = useState(null)
+
+  const loggedInUser = userService.getLoggedinUser()
 
   useEffect(() => {
     const fetchToy = async () => {
@@ -49,7 +52,7 @@ export function ToyDetails() {
         <h2>Date added - {new Date(createdAt).toLocaleString()}</h2>
         <h2>inStock: {inStock ? 'Yes!' : 'Sadly not :('}</h2>
         <div className='form-btns'>
-          <button className='del-btn' onClick={() => onRemoveToy()}>
+          <button className='del-btn' onClick={() => onRemoveToy()} disabled={!loggedInUser?.isAdmin}>
             Delete Toy
           </button>
           <button className='back-btn' onClick={() => navigate('/toy')}>
@@ -57,6 +60,7 @@ export function ToyDetails() {
           </button>
           <button
             className='nav-edit-btn'
+            disabled={!loggedInUser?.isAdmin}
             onClick={() => {
               navigate(`/toy/edit/${params.toyId}`)
             }}

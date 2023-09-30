@@ -7,11 +7,14 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toyService } from '../services/toy.service.js'
+import { userService } from '../services/user.service.js'
 
 export function ToyIndex() {
   const toys = useSelector((storeState) => storeState.toyModule.toys)
   const filterBy = useSelector((storeState) => storeState.toyModule.filterBy)
   const [sortBy, setSortBy] = useState(toyService.getDefaultSort)
+
+  const loggedInUser = userService.getLoggedinUser()
 
   useEffect(() => {
     loadToy(sortBy).catch((err) => {
@@ -28,9 +31,11 @@ export function ToyIndex() {
     <section className='toy-index'>
       <section className='toy-controls'>
         <div className='control-left'>
-          <Link className='add-toy' to='/toy/edit'>
-            Add Toy
-          </Link>
+          {loggedInUser?.isAdmin && (
+            <Link className='add-toy' to='/toy/edit'>
+              Add Toy
+            </Link>
+          )}
           <ToyFilter onSetFilterBy={onSetFilterBy} filterBy={filterBy} />
         </div>
         <ToySort sortBy={sortBy} setSortBy={setSortBy} />
