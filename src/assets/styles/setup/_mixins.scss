@@ -40,10 +40,6 @@
   color: $text-color;
   cursor: pointer;
   transition: background-color 0.3s;
-
-  &:hover {
-    // background-color: darken($clr1bg, 10%);
-  }
 }
 
 // Mixin for inputs
@@ -56,7 +52,6 @@
   transition: border-color 0.3s;
 
   &:focus {
-    // border-color: darken($border-color, 10%);
     outline: none;
   }
 }

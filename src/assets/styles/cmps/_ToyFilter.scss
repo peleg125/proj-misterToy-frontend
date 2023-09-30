@@ -1,0 +1,12 @@
+.toy-filter {
+  .form-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    input[type='text'] {
+      flex: 1;
+      @include input-styles($border-color: #fff);
+    }
+  }
+}

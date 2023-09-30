@@ -1,26 +1,39 @@
 .toy-index {
-  display: grid;
-  background-color: $clr2;
-}
+  padding: em(20px);
+  background-color: $clr5;
 
-.add-toy-container {
-  margin-top: 20px;
-  text-align: center;
-}
+  .toy-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: em(20px);
+    background-color: $clr2;
 
-.add-toy {
-  text-decoration: none;
-  color: $clr6;
-  background-color: $clr1;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.toy-filter-sort {
-  place-self: center;
-  background-color: #f2cd5d;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    .control-left {
+      display: flex;
+      align-items: center;
+      margin-block-start: em(20px);
+
+      .add-toy {
+        background-color: $clr1;
+        padding: em(10px) em(15px);
+        border-radius: em(5px);
+        color: $clrwhite;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: em(20px);
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($clr1, 10%);
+        }
+      }
+    }
+
+    .toy-filter,
+    .toy-sort {
+      margin: 0 10px;
+    }
+  }
 }

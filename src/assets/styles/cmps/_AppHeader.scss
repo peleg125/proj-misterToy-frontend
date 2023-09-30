@@ -21,6 +21,10 @@
       color: $clr3;
     }
   }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
 
   .nav-links {
     display: flex;

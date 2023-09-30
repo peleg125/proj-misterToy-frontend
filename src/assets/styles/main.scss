@@ -6,13 +6,13 @@
 @import 'setup/typography';
 @import 'base/layout.scss';
 @import 'base/base.scss';
-@import 'base/forms.scss';
 @import 'base/helpers.scss';
 
 // CMPS
 @import 'cmps/AboutUs.scss';
 @import 'cmps/AppHeader.scss';
 @import 'cmps/HomePage.scss';
+@import 'cmps/ToyFilter.scss';
 @import 'cmps/ToyEdit.scss';
 @import 'cmps/ToyForm.scss';
 @import 'cmps/ToyIndex.scss';

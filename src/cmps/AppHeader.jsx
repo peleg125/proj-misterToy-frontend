@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+import { LoginSignup } from './LoginSignup'
 
 export function AppHeader() {
   return (
@@ -12,6 +13,7 @@ export function AppHeader() {
         <NavLink to='/toy'>Toys</NavLink>
         <NavLink to='/dashboard'>Dashboard</NavLink>
       </nav>
+      <LoginSignup />
     </header>
   )
 }

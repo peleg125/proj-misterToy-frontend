@@ -5,34 +5,14 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin: 20px auto;
   max-width: 600px;
-}
+  button[type='submit'] {
+    @include button-styles();
+  }
 
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-div {
-  margin-bottom: 10px;
-}
-
-label {
-  margin-bottom: 5px;
-  display: block;
-}
-
-button[type='submit'] {
-  @include button-styles();
-}
-
-input[type='text'],
-input[type='email'],
-input[type='tel'],
-textarea {
-  @include input-styles();
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  textarea {
+    @include input-styles();
+  }
 }

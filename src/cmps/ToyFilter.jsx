@@ -31,24 +31,13 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
 
   return (
     <section className='toy-filter'>
-      <form>
-        <div className='filter-input-wrapper'>
-          <input onChange={handleChange} value={name} type='text' placeholder='Search by Name' name='name' />
-          <label>
-            <input type='checkbox' name='inStock' checked={inStock} onChange={handleChange} />
-            In Stock
-          </label>
-          <SelectFilter labels={labelsToChoose} selectedLabels={labels} onLabelChange={handleMultiSelectChange} />
-          {/* <select multiple={true} value={labels} onChange={handleMultiSelectChange}>
-            <option value='On wheels'>On wheels</option>
-            <option value='Box game'>Box game</option>
-            <option value='Baby'>Baby</option>
-            <option value='Doll'>Doll</option>
-            <option value='Puzzle'>Puzzle</option>
-            <option value='Outdoor'>Outdoor</option>
-            <option value='Battery Powered'>Battery Powered</option>
-          </select> */}
-        </div>
+      <form className='form-container'>
+        <input onChange={handleChange} value={name} type='text' placeholder='Search by Name' name='name' />
+        <label>
+          <input type='checkbox' name='inStock' checked={inStock} onChange={handleChange} />
+          In Stock
+        </label>
+        <SelectFilter labels={labelsToChoose} selectedLabels={labels} onLabelChange={handleMultiSelectChange} />
       </form>
     </section>
   )
