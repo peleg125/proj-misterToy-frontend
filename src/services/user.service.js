@@ -11,7 +11,6 @@ export const userService = {
   signup,
   getById,
   getLoggedinUser,
-  updateScore,
 }
 
 window.us = userService
@@ -29,20 +28,6 @@ async function signup({ username, password, fullname }) {
   const user = { username, password, fullname, score: 10000 }
   const user_1 = await httpService.post(BASE_URL + 'signup', user)
   if (user_1) return _setLoggedinUser(user_1)
-}
-
-function updateScore(diff) {
-  return userService
-    .getById(getLoggedinUser()._id)
-    .then((user) => {
-      if (user.score + diff < 0) return Promise.reject('No credit')
-      user.score += diff
-      return storageService.put(STORAGE_KEY, user)
-    })
-    .then((user) => {
-      _setLoggedinUser(user)
-      return user.score
-    })
 }
 
 async function logout() {

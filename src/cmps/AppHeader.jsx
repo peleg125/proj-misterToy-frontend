@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { LoginSignup } from './LoginSignup'
+import { useSelector } from 'react-redux'
 
 export function AppHeader() {
   return (

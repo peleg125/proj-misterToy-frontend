@@ -16,7 +16,22 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
 
   function handleChange({ target }) {
     const field = target.name
-    let value = target.type === 'checkbox' ? target.checked : target.value
+
+    let value
+    if (target.type === 'checkbox') {
+      value = target.checked
+    } else if (target.type === 'select-one') {
+      if (target.value === '1') {
+        value = true
+      } else if (target.value === '0') {
+        value = false
+      } else {
+        value = null
+      }
+    } else {
+      value = target.value
+    }
+
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 
@@ -34,8 +49,12 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
       <form className='form-container'>
         <input onChange={handleChange} value={name} type='text' placeholder='Search by Name' name='name' />
         <label>
-          <input type='checkbox' name='inStock' checked={inStock} onChange={handleChange} />
-          In Stock
+          Stock Status:
+          <select name='inStock' value={inStock === null ? '' : inStock ? '1' : '0'} onChange={handleChange}>
+            <option value=''>All</option>
+            <option value='1'>In stock</option>
+            <option value='0'>Out of stock</option>
+          </select>
         </label>
         <SelectFilter labels={labelsToChoose} selectedLabels={labels} onLabelChange={handleMultiSelectChange} />
       </form>

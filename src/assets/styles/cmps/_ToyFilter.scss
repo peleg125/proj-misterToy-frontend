@@ -5,7 +5,7 @@
     gap: 1rem;
 
     input[type='text'] {
-      flex: 1;
+      flex-grow: 1;
       @include input-styles($border-color: #fff);
     }
   }

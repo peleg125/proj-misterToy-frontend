@@ -51,6 +51,7 @@ export function ToyEdit() {
   }
 
   const { name, price, labels, createdAt, inStock } = toyToEdit
+  const labelOptions = toyService.getLabels()
   return (
     <section className='toy-edit'>
       <h2>Edit Toy</h2>
@@ -66,10 +67,11 @@ export function ToyEdit() {
         <div>
           <label>Labels</label>
           <select multiple={true} value={labels || []} onChange={handleMultiSelectChange}>
-            <option value='Educational'>Educational</option>
-            <option value='Fun'>Fun</option>
-            <option value='Outdoor'>Outdoor</option>
-            <option value='Indoor'>Indoor</option>
+            {labelOptions.map((label) => (
+              <option key={label} value={label}>
+                {label}
+              </option>
+            ))}
           </select>
         </div>
         <div>

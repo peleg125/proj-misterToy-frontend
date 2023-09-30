@@ -13,6 +13,7 @@ export function ToyDetails() {
     const fetchToy = async () => {
       try {
         const toy = await toyService.getById(params.toyId)
+
         if (!toy) {
           navigate('/toy')
         } else {

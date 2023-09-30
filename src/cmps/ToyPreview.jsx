@@ -11,10 +11,10 @@ export function ToyPreview({ toy }) {
         navigate(`/toy/details/${toy._id}`)
       }}
     >
+      <span className={toy.inStock ? 'in-stock' : 'out-of-stock'}>{toy.inStock ? 'In stock!' : 'Out of stock!'}</span>
       <img src={robohashUrl} alt={`Robot representation for ${toy.name}`} />
-      <div>Name - {toy.name}</div>
-      <div>Price - ${toy.price.toLocaleString()}</div>
-      <div>Date added -{new Date(toy.createdAt).toLocaleString()}</div>
+      <div className='toy-name'>{toy.name}</div>
+      <div>${toy.price.toLocaleString()}</div>
     </article>
   )
 }
